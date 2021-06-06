@@ -146,35 +146,7 @@ class Login extends CI_Controller
 	         } 
 	}
 
-	public function map_api($usr=''){
-		//client => 416853405189-eln5nb4n1d18jek4naa0n2276elbfnp3.apps.googleusercontent.com
-		//secret => -AXWOnT2RkCKXt3Vwn_xELmZ
-		//api => AIzaSyD7pGHZ25ZTwwHkqJve0trEPZdKTvN0Wk8
-		//https://nominatim.openstreetmap.org/search?q=thiruppathur&format=json
-		//https://maps.google.com/maps/api/geocode/json?address=tambaram&key=AIzaSyD7pGHZ25ZTwwHkqJve0trEPZdKTvN0Wk8
-		$url='https://nominatim.openstreetmap.org/search?q=chennai&format=json';
-		$curl = curl_init();
-	    curl_setopt_array($curl, array(
-	        CURLOPT_RETURNTRANSFER => 1,
-	        CURLOPT_URL => $url,
-	        CURLOPT_USERAGENT => TRUE
-	    ));
-	    $resp = curl_exec($curl);
-	    $resp = json_decode($resp);
-	    curl_close($curl);
-	    if(isset($resp[0])){
-	    $lat = $resp[0]->lat;
-	    $lon = $resp[0]->lon;
-	    $display_name = $resp[0]->display_name;
-	    	echo "<pre>";
-	      print_r($resp[0]->lat);
-	      print_r($resp[0]->lon);
-	      print_r($resp[0]->display_name);
-	      echo "</pre>";
-	      exit;
-	    }
-	      // 13.083693980.270186Chennai, Chennai District, Tamil Nadu, India
-	}
+	
 
 	public function check_customer($email){
 	    $query = $this->db->where('email_address', $email)->get("users");
